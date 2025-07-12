@@ -214,7 +214,16 @@ def get_registered_before_year(data: dict, year: int) -> list[dict]:
     Returns:
         list[dict]: List of users with full name and registration date.
     """
-    pass
+    result = []
+    for user in data['results']:
+        regestrated_year = int(user['registered']['date'][0:4:1])
+        if regestrated_year == year:
+            s = {
+                'name': user['name']['first'] + ' ' + user['name']['last'],
+                'registered': str(user['registered']['date'][0:10])
+            }
+            result.append(s)
+    return result
 
 
 
